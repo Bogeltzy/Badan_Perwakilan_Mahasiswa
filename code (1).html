@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Badan Perwakilan Mahasiswa STIEBS NU Garut</title>
+  <style>
+    /* Reset dan box sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #536976, #292E49);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: rgba(41, 46, 73, 0.85);
+      width: 100%;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 100;
+    }
+
+    header .brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      color: #96c93d;
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #60c657;
+      color: #1a1f26;
+      outline: none;
+      box-shadow: 0 0 6px #60c657aa;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      width: 90%;
+      padding: 3rem 1.5rem;
+      background: rgba(41, 46, 73, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      margin: 3rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      background: linear-gradient(90deg, #00b09b, #96c93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section.info {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #d0d7e9;
+      text-align: justify;
+    }
+
+    section.fungsi-tujuan {
+      color: #d0d7e9;
+      background: rgba(41, 46, 73, 0.5);
+      padding: 1rem 2rem;
+      border-radius: 16px;
+      line-height: 1.5;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.25);
+      font-size: 1.1rem;
+    }
+    section.fungsi-tujuan h2 {
+      text-align: center;
+      margin-bottom: 1.4rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #7ee8fa;
+      text-shadow: 0 0 6px #4dc3ffaa;
+    }
+    section.fungsi-tujuan ul {
+      padding-left: 1.2rem;
+      list-style-type: disc;
+    }
+    section.fungsi-tujuan ul li {
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Diagram struktur organisasi */
+    .diagram {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .box {
+      background: rgba(0, 176, 155, 0.25);
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,176,155,0.4);
+      text-align: center;
+      color: #d0e6c9;
+      font-weight: 600;
+      min-width: 160px;
+      user-select: none;
+      font-size: 1.1rem;
+    }
+
+    .top-level {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00b09b, #96c93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    /* Layout garis vertikal dan horizontal untuk diagram */
+    .vertical-line {
+      width: 4px;
+      height: 40px;
+      background: #60c657;
+      margin: 0 auto;
+    }
+
+    .horizontal-line-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 16px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .horizontal-line-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15px;
+      right: 15px;
+      height: 4px;
+      background: #60c657;
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        max-width: 100%;
+        margin: 1rem;
+      }
+      .diagram {
+        max-width: 100%;
+        gap: 25px;
+      }
+      .horizontal-line-wrapper {
+        flex-direction: column;
+        gap: 25px;
+      }
+      .horizontal-line-wrapper::before {
+        height: auto;
+        width: 4px;
+        top: 15px;
+        left: 50%;
+        right: auto;
+        height: calc(100% - 30px);
+      }
+      .box {
+        min-width: auto;
+        width: 90%;
+        font-size: 1rem;
+      }
+      nav {
+        gap: 1rem;
+      }
+    }
+
+    button {
+      margin: 2rem auto 0;
+      background: #60c657;
+      color: #1a1f26;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      box-shadow: 0 4px 10px rgba(96,198,87,0.5);
+      user-select: none;
+    }
+
+    button:hover, button:focus {
+      background-color: #49a536;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      background: rgba(41, 46, 73, 0.85);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #b8c7a9;
+      user-select: none;
+      border-top: 1px solid #60c657;
+    }
+
+    footer .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    footer .footer-links a {
+      color: #96c93d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    footer .footer-links a:hover, footer .footer-links a:focus {
+      color: #60c657;
+      outline: none;
+      text-decoration: underline;
+    }
+
+    /* Screen reader only */
+    .sr-only {
+      border: 0 !important;
+      clip: rect(1px, 1px, 1px, 1px) !important;
+      -webkit-clip-path: inset(50%) !important;
+              clip-path: inset(50%) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+      white-space: nowrap !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand" aria-label="Identitas situs Badan Perwakilan Mahasiswa STIEBS NU Garut">
+      Badan Perwakilan Mahasiswa<br />
+      Sekolah Tinggi Ilmu Ekonomi dan Bisnis Syariah Nahdlatul Ulama<br />
+      Kabupaten Garut (STIEBS NU Garut)
+    </div>
+    <nav aria-label="Navigasi utama situs">
+      <a href="#info">Profil</a>
+      <a href="#fungsi">Fungsi dan Tujuan</a>
+      <a href="#diagram">Struktur Organisasi</a>
+      <a href="#contact">Hubungi Kami</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Selamat Datang di Situs Resmi BPM STIEBS NU Garut</h1>
+    <section id="info" class="info" aria-label="Profil BPM dan informasi penting">
+      <p>
+        Badan Perwakilan Mahasiswa (BPM) STIEBS NU Garut adalah lembaga resmi yang mewadahi aspirasi, hak, dan kewajiban mahasiswa.
+        BPM bertugas menjadi penghubung antara mahasiswa dan pihak kampus serta mendorong pengembangan potensi mahasiswa di bidang akademik,
+        organisasi, dan sosial kemahasiswaan.
+      </p>
+      <p>
+        Kami berkomitmen untuk menjaga transparansi, partisipasi aktif, dan inovasi dalam menjalankan fungsi pengawasan, advokasi, dan pemberdayaan mahasiswa.
+        Bersama BPM, mahasiswa dapat memperjuangkan aspirasi dan ikut aktif membangun lingkungan kampus yang kondusif serta berdaya saing.
+      </p>
+    </section>
+
+    <section id="fungsi" class="fungsi-tujuan" aria-label="Fungsi dan Tujuan BPM">
+      <h2>Fungsi dan Tujuan BPM</h2>
+      <ul>
+        <li>Menampung dan menyampaikan aspirasi mahasiswa kepada pihak kampus.</li>
+        <li>Mengawasi jalannya kegiatan organisasi mahasiswa dan administrasi kampus.</li>
+        <li>Memberikan rekomendasi dan masukan untuk peningkatan kualitas akademik dan kemahasiswaan.</li>
+        <li>Mendukung pengembangan bakat, kreativitas, dan kepemimpinan mahasiswa.</li>
+        <li>Mengadvokasi hak dan kewajiban mahasiswa agar terlindungi dengan baik.</li>
+        <li>Mendorong terciptanya suasana kampus yang bersih, adil, dan bertanggung jawab.</li>
+      </ul>
+    </section>
+
+    <section id="diagram" aria-label="Diagram Struktur Organisasi BPM" class="diagram" role="img" aria-describedby="diagramDesc">
+      <div id="diagramDesc" class="sr-only">Diagram struktur organisasi BPM STIEBS NU Garut; Ketua di atas sebagai pusat, garis vertikal ke bawah, bercabang ke posisi Sekretaris, Bendahara, Pengawasan, KPU, dan Legalitas di bawah.</div>
+
+      <div class="box top-level" tabindex="0">Ketua: Afik Gunawan</div>
+      <div class="vertical-line" aria-hidden="true"></div>
+      <div class="horizontal-line-wrapper">
+        <div class="box" tabindex="0">Sekretaris: Rizal Fathu Rohman</div>
+        <div class="box" tabindex="0">Bendahara: Ani Latifah</div>
+        <div class="box" tabindex="0">Pengawasan: Ahmad Ismail</div>
+        <div class="box" tabindex="0">KPU: Hamam</div>
+        <div class="box" tabindex="0">Legalitas: Moch Akbar Alamsyah</div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Kontak informasi BPM">
+      <button id="contactButton" aria-describedby="contactDesc" aria-expanded="false">Hubungi Kami</button>
+      <p id="contactDesc" style="text-align:center; margin-top:0.5rem; font-size: 0.9rem; color: #a0b89b; display:none;">
+        Silakan email <a href="mailto:bpm@stiebsnu-garut.ac.id" style="color:#96c93d; text-decoration:none;">bpm@stiebsnu-garut.ac.id</a> untuk informasi lebih lanjut
+      </p>
+    </section>
+
+  </main>
+  <footer>
+    <div class="footer-content" aria-label="Informasi footer dan tautan penting">
+      <div>&copy; 2024 Badan Perwakilan Mahasiswa STIEBS NU Garut. Semua Hak Dilindungi.</div>
+      <div class="footer-links">
+        <a href="mailto:bpm@stiebsnu-garut.ac.id" aria-label="Email BPM STIEBS NU Garut">Email</a>
+        <a href="https://www.stiebsnu-garut.ac.id" target="_blank" rel="noopener noreferrer" aria-label="Website resmi STIEBS NU Garut">Website Kampus</a>
+        <a href="#" aria-label="Halaman media sosial BPM STIEBS NU Garut">Media Sosial</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // JavaScript untuk interaksi tombol kontak
+    const btnContact = document.getElementById('contactButton');
+    const contactDesc = document.getElementById('contactDesc');
+
+    btnContact.addEventListener('click', () => {
+      if (contactDesc.style.display === 'none') {
+        contactDesc.style.display = 'block';
+        btnContact.setAttribute('aria-expanded', 'true');
+        btnContact.focus();
+      } else {
+        contactDesc.style.display = 'none';
+        btnContact.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
+
